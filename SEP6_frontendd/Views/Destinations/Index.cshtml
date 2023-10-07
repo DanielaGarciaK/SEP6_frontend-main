@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = ViewContext.RouteData.Values["controller"].ToString();
+    Layout = "_Layout";
+}
+
+<h1>Top 10 Destinations</h1>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>Destination </th>
+        <th>Number of flights</th>
+    </tr>
+    @{
+        var data = ViewBag.SuccessBody;
+        foreach (var d in data)
+        {
+            <tr>
+                <td>@d.Destination</td>
+                <td>@d.count</td>
+            </tr>
+
+        }
+    }
+</table>
+
+<h1 class="hello">Number of Flights of the Three Origins in the Top 10 Destination </h1>
+<div><canvas id="lineChart1"></canvas></div>
+
+@{ChartJSCore.Models.Chart chart1 = (ChartJSCore.Models.Chart)ViewData["chart1"]; }
+
+@section Scripts {
+    <script src="~/lib/Chart.js/dist/Chart.js"></script>
+    <script>
+        @Html.Raw(chart1.CreateChartCode("lineChart1"));
+
+    </script>
+}
+

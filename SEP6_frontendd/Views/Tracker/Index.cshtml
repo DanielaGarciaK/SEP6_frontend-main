@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = ViewContext.RouteData.Values["controller"].ToString();
+    Layout = "_Layout";
+}
+
+<h1>Mean Airtime of each Origin</h1>
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>Origin </th>
+        <th>Mean Airtime </th>
+    </tr>
+    @{
+        var data = ViewBag.SuccessBody;
+        foreach (var d in data)
+        {
+            <tr>
+                <td>@d.Origin</td>
+                <td>@d.MeanAirtime</td>
+            </tr>
+
+        }
+    }
+</table>
+
+<h1>Mean Delay for each Origin</h1>
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>Origin </th>
+        <th>Mean Arrival Delay </th>
+        <th>Mean Departure Delay </th>
+    </tr>
+    @{
+        var data2 = ViewBag.table2;
+        foreach (var d in data2)
+        {
+            <tr>
+                <td>@d.Origin</td>
+                <td>@d.ArrivalDelay</td>
+                <td>@d.DepartureDelay</td>
+            </tr>
+
+        }
+    }
+</table>
